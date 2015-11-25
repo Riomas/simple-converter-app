@@ -9,12 +9,14 @@ package com.simple.converter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
+
 import org.apache.log4j.Logger;
 import org.artofsolving.jodconverter.office.DefaultOfficeManagerConfiguration;
 import org.artofsolving.jodconverter.office.OfficeException;
 import org.artofsolving.jodconverter.office.OfficeManager;
 import org.artofsolving.jodconverter.process.MacProcessManager;
 import org.artofsolving.jodconverter.process.ProcessManager;
+import org.artofsolving.jodconverter.process.ProcessQuery;
 import org.artofsolving.jodconverter.process.PureJavaProcessManager;
 import org.artofsolving.jodconverter.process.UnixProcessManager;
 import org.artofsolving.jodconverter.process.WindowsProcessManager;
@@ -89,7 +91,8 @@ public abstract class ConverterFactoryOffice extends AbstractConverterFactory {
             
             String processRegex = "soffice.*" + Pattern.quote("socket,host=127.0.0.1,port=2002");
             try {
-                String pid = process.findPid(processRegex);
+                ProcessQuery processQuery=new ProcessQuery(processRegex, "");
+				long pid = process.findPid(processQuery);
                 process.kill(null, pid);
                 
             } catch (IOException e1) {

@@ -7,7 +7,7 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
-import org.apache.commons.cli.PosixParser;
+import org.apache.commons.cli.DefaultParser;
 
 /**
  *
@@ -34,7 +34,7 @@ public class SimpleConverterApplicationTest {
     }
 
     public static void main(String[] arguments) throws Exception {
-        CommandLineParser commandLineParser = new PosixParser();
+        CommandLineParser commandLineParser = new DefaultParser();
         CommandLine commandLine = commandLineParser.parse(OPTIONS, arguments);
 
         String outputFormat = Constants.TXT;
